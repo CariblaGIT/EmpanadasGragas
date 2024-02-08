@@ -1,0 +1,135 @@
+body{
+    margin: 0;
+    padding: 0;
+
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#header{
+    width: 100vw;
+    height: 15vh;
+
+    background-color: #4F5F74;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logoDumplings{
+    height: 15vh;
+    width: 15vw;
+}
+
+#dumplings{
+    width: 100vw;
+    height: 85vh;
+
+    background-color: #819bbd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#selectorDumplings{
+    width: 60em;
+    height: 25em;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.typeDumpling{
+    width: 15em;
+    height: 25em;
+
+    background-color: #677b96;
+    border-radius: 5%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgDumplings{
+    width: 10em;
+    height: 10em;
+}
+
+.titleDumpling, .priceDumpling{
+    width: 15em;
+    height: 5em;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectorNumberOfDumplings{
+    width: 10em;
+    height: 2em;
+    background-color: #95aac6;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrowLeft{
+    border-right: 0.2em solid #677b96;
+}
+
+.arrowRight{
+    border-left: 0.2em solid #677b96;
+}
+
+.arrowLeft, .arrowRight{
+    height: 2em;
+    width: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrowLeft:hover, .arrowRight:hover{
+    background-color: #7e90a7;
+}
+
+.bi{
+    color:white;
+    height: 1em;
+    width: 1em;
+}
+
+.numberCounter{
+    height: 2em;
+    width: 6em;
+    background-color: #c1d0e4;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sendButton{
+    height: 4em;
+    width: 8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: green;
+    border: 0.2em solid lightgreen;
+    color: lightgreen;
+    margin-top: 3em;
+}
