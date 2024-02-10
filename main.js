@@ -14,8 +14,22 @@ export const fn = (empanadasPollo, empanadasTernera, empanadasVerdura) => {
    const precioPollo = 12;
    const precioTernera = 14;
    const precioVerdura = 16;
+   let totalCosto = 0;
 
-   let totalCosto = Math.ceil((empanadasPollo * precioPollo + empanadasTernera * precioTernera + empanadasVerdura * precioVerdura) / 3);
+   let arrayEmpanadasPollo = new Array(empanadasPollo*2).fill(precioPollo/2);
+   let arrayEmpanadasTernera = new Array(empanadasTernera*2).fill(precioTernera/2);
+   let arrayEmpanadasVerduras = new Array(empanadasVerdura*2).fill(precioVerdura/2);
+
+   let arrayVerduraTernera = arrayEmpanadasVerduras.concat(arrayEmpanadasTernera);
+   let arrayEmpanadasPedidas = arrayVerduraTernera.concat(arrayEmpanadasPollo);
+
+   if(arrayEmpanadasPollo.length == arrayEmpanadasTernera.length && arrayEmpanadasPollo.length == arrayEmpanadasVerduras.length){
+      totalCosto = precioTernera * empanadasTernera;
+   } else {
+      for(let i = 0; i < arrayEmpanadasPedidas.length; i += 3){
+         totalCosto += arrayEmpanadasPedidas[i];
+      }
+   }
    
    return totalCosto;
 };
