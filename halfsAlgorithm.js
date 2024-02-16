@@ -33,5 +33,3 @@ export const fn = (empanadasPollo, empanadasTernera, empanadasVerdura) => {
    
    return totalCosto;
 };
-
-fn(13, 10, 13)
