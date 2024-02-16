@@ -1,4 +1,4 @@
-import { fn } from "./main.js";
+import { fn } from "./originalAlgorithm.js";
 
 describe("Function fn - Input Parameter Test Cases", () => {
    test("Case: fn(1, 1, 1) - Expected Result: 14", () => {

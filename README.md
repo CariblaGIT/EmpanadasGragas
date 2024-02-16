@@ -159,7 +159,7 @@ On this scenario, is tested all the combinations between the meat and veggies du
 
 Finally, after all the check case scenario, is returned the minimum total amount for all the dumplings.
 
-## Explanation best algorithm 🤖
+## Explanation most efficient way algorithm 🤖
 
 The best solution taking account the code implementation, is to notice one thing: no matter the number of each dumpling, in all scenarios the average price will be the same, so making the sum of all the costs splitted by the 3 (3x1 offer) is the minimum price rounded up to odd prices. The implementation will be as follows:
 
@@ -169,7 +169,7 @@ let totalCosto = Math.ceil((empanadasPollo * precioPollo + empanadasTernera * pr
 
 ```
 
-## Explanation interesting algorithm - My final implementation 🎯
+## Explanation interesting algorithm
 
 Trying to approach a better solution that the first one that I have implemented, I noticed an interesting property of the problem. If you try to think a way to demostrate, using the half parts costs of the dumplings, the best combination possible of that halfs will be determined by arranging them in order in an array and making groups of three applicating that order. There is only ONE exception to that rule, and is when there are the same amount of all the types of dumplings, in that cases the best solution is to do the sum of costs explained on the previous section. Here is an example:
 
@@ -203,7 +203,13 @@ return totalCosto;
 
 ```
 
-Here, firstly is created the list of halfs and then all lists are concatenated to get the one shown on the diagram, and if is not the n-n-n scenario, loops through the list and gets the 0, 3, 6... positions to sum them
+Here, firstly is created the list of halfs and then all lists are concatenated to get the one shown on the diagram, and if is not the n-n-n scenario, loops through the list and gets the 0, 3, 6... positions to sum them.
+
+After some testing with large numbers inputs, I detected some cases in which this approach is not accurate enough to get the result (some small differences like 1 or 2).
+
+## Final decision and conclusion 🎯
+
+After comparing all the three ways to solve the problem, I decided to stay with the original approach, because the Math.Ceil() function has some resolution problems in different cases (not the ones that appears on the main.test.js); and the halfs approach with larger amounts of dumplings (like 13,10,13) cannot reach the exact amount expected. By that reasons, I stay with the original approach, with the only problem that is a lot of code in front of the other options.
 
 ## Use instructions - Tests :computer:
 
@@ -225,12 +231,14 @@ Here, firstly is created the list of halfs and then all lists are concatenated t
 2. Change function fn to be able to being used in JS as follows:
 
 ```javascript
-    // main.js : Remove export from this line:
+    // originalAlgorithm.js : Remove export from this line:
     export const fn = (empanadasPollo, empanadasTernera, empanadasVerdura) => {
     // ...
     };
 ```
 3. Launch index.html, the interface will show you a 3 dumpling selector, the result is shown on console :D
+
+<img src="./img/web.png">
 
 ## Support
 
