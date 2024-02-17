@@ -43,15 +43,15 @@ At the beggining of the function, there are 3 checks of the amount of dumplings 
 ```javascript
 
 if(chickenDumplings < 0 || meatDumplings < 0 || veggieDumplings < 0){
-      throw new Error("Hay alguna empanada menor a cero, y eso es imposible");
+   throw new Error("Negative dumplings, that is impossible");
 }
 
 if((chickenDumplings + meatDumplings + veggieDumplings) % 3 != 0){
-   throw new Error("El numero de empanadas no es multiplo de 3, por lo que no se aprovecha la oferta del 3x1");
+   throw new Error("Number of dumplings not 3 multiple, we cannot use the 3x1 offer if that happens");
 }
 
 if(chickenDumplings + meatDumplings + veggieDumplings >= 40){
-   throw new Error("El numero de empanadas pedido excede el de produccion");
+   throw new Error("Total number of dumplings os greater than the production one, not affordable");
 }
 
 ```

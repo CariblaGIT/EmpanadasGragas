@@ -5,17 +5,17 @@ export const fn = (chickenDumplings, meatDumplings, veggieDumplings) => {
 
    // Is checked if one of the dumplings input number is negative cause is not possible to buy negative dumplings x.x
    if(chickenDumplings < 0 || meatDumplings < 0 || veggieDumplings < 0){
-      throw new Error("Hay alguna empanada menor a cero, y eso es imposible");
+      throw new Error("Negative dumplings, that is impossible");
    }
 
    // Is checked if the total of dumplings is not a 3 multiple, in that case the remainder will be different to 0
    if((chickenDumplings + meatDumplings + veggieDumplings) % 3 != 0){
-      throw new Error("El numero de empanadas no es multiplo de 3, por lo que no se aprovecha la oferta del 3x1");
+      throw new Error("Number of dumplings not 3 multiple, we cannot use the 3x1 offer if that happens");
    }
 
    // Is checked if the total dumplings is over 40, you passed the maximum amount per buy ;(
    if(chickenDumplings + meatDumplings + veggieDumplings >= 40){
-      throw new Error("El numero de empanadas pedido excede el de produccion");
+      throw new Error("Total number of dumplings os greater than the production one, not affordable");
    }
 
    // Global variables for, in order: Total cost of the order and the cost of a chicken, meat and veggie dumpling respectively
