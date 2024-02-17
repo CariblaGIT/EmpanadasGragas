@@ -42,17 +42,17 @@ At the beggining of the function, there are 3 checks of the amount of dumplings 
 
 ```javascript
 
-if(empanadasPollo < 0 || empanadasTernera < 0 || empanadasVerdura < 0){
+if(chickenDumplings < 0 || meatDumplings < 0 || veggieDumplings < 0){
       throw new Error("Hay alguna empanada menor a cero, y eso es imposible");
-   }
+}
 
-   if((empanadasPollo + empanadasTernera + empanadasVerdura) % 3 != 0){
-      throw new Error("El numero de empanadas no es multiplo de 3, por lo que no se aprovecha la oferta del 3x1");
-   }
+if((chickenDumplings + meatDumplings + veggieDumplings) % 3 != 0){
+   throw new Error("El numero de empanadas no es multiplo de 3, por lo que no se aprovecha la oferta del 3x1");
+}
 
-   if(empanadasPollo + empanadasTernera + empanadasVerdura >= 40){
-      throw new Error("El numero de empanadas pedido excede el de produccion");
-   }
+if(chickenDumplings + meatDumplings + veggieDumplings >= 40){
+   throw new Error("El numero de empanadas pedido excede el de produccion");
+}
 
 ```
 
@@ -64,17 +64,19 @@ After checking the correct input values given to the function, I approached the 
 
 ```javascript
 
-   let totalCosto = 0;
-   const precioPollo = 12;
-   const precioTernera = 14;
-   const precioVerdura = 16;
 
-   while(empanadasPollo > 0 && empanadasTernera > 0 && empanadasVerdura > 0){
-      totalCosto = totalCosto + 14;
-      empanadasPollo--;
-      empanadasTernera--;
-      empanadasVerdura--;
-   }
+let totalCost = 0;
+const chickenPrice = 12;
+const meatPrice = 14;
+const veggiePrice = 16;
+
+
+while(chickenDumplings > 0 && meatDumplings > 0 && veggieDumplings > 0){
+   totalCost = totalCost + 14;
+   chickenDumplings--;
+   meatDumplings--;
+   veggieDumplings--;
+}
 
 ```
 
@@ -82,7 +84,11 @@ On this part, I have instantiated 4 variables, representing the total amount of 
 
 After this loop, I reached a scenario in which one there are no more dumplings or there are not from 1 or 2 types of dumpling. So, knowing this fact, if there are no more dumplings, is the best price calculated; and on the other 2 I have studied all the possible cases using the following formula:
 
+<div align="center">
+
 $({(a+b)*13 \over 2} + {(b+c)*15 \over 2} + {(a+c)*14 \over 2})$
+
+</div>
 
 Thanks to this formula, where a, b and c is equal to 1 or 0 if, after the previous calculation, there are chicken, meat or veggie dumplings remaining respectively. With that, are calculated the different minimum prices that are put on the following case scenarios:
 
@@ -90,10 +96,10 @@ Thanks to this formula, where a, b and c is equal to 1 or 0 if, after the previo
 
 ```javascript
 
-if(!hayPollo && !hayTernera){
-      while(empanadasVerdura > 0){
-         totalCosto = totalCosto + precioVerdura;
-         empanadasVerdura = empanadasVerdura - 3;
+if(!isChicken && !isMeat){
+      while(veggieDumplings > 0){
+         totalCost = totalCost + veggiePrice;
+         veggieDumplings = veggieDumplings - 3;
       }
    }
 
@@ -105,10 +111,10 @@ On this scenario, the unique approach is to set groups of 3 of the veggies dumpl
 
 ```javascript
 
-if(!hayVerdura && !hayPollo){
-      while(empanadasTernera > 0){
-         totalCosto = totalCosto + precioTernera;
-         empanadasTernera = empanadasTernera - 3;
+if(!isVeggie && !isChicken){
+      while(meatDumplings > 0){
+         totalCost = totalCost + meatPrice;
+         meatDumplings = meatDumplings - 3;
       }
    }
 
@@ -120,10 +126,10 @@ On this scenario, the unique approach is to set groups of 3 of the meat dumpling
 
 ```javascript
 
-if(!hayVerdura && !hayTernera){
-      while(empanadasPollo > 0){
-         totalCosto = totalCosto + precioPollo;
-         empanadasPollo = empanadasPollo - 3;
+if(!isVeggie && !isMeat){
+      while(chickenDumplings > 0){
+         totalCost = totalCost + chickenPrice;
+         chickenDumplings = chickenDumplings - 3;
       }
    }
 
@@ -135,20 +141,20 @@ On this scenario, the unique approach is to set groups of 3 of the chicken dumpl
 
 ```javascript
 
-if(!hayPollo){
-      while(empanadasTernera > 0 && empanadasVerdura > 0){
-         if(empanadasTernera < empanadasVerdura){
-            totalCosto = totalCosto + precioVerdura;
-            empanadasTernera = empanadasTernera - 1;
-            empanadasVerdura = empanadasVerdura - 2;
-         } else if (empanadasTernera > empanadasVerdura){
-            totalCosto = totalCosto + (precioVerdura + precioTernera)/2;
-            empanadasTernera = empanadasTernera - 2;
-            empanadasVerdura = empanadasVerdura - 1;
+if(!isChicken){
+      while(meatDumplings > 0 && veggieDumplings > 0){
+         if(meatDumplings < veggieDumplings){
+            totalCost = totalCost + veggiePrice;
+            meatDumplings = meatDumplings - 1;
+            veggieDumplings = veggieDumplings - 2;
+         } else if (meatDumplings > veggieDumplings){
+            totalCost = totalCost + (veggiePrice + meatPrice)/2;
+            meatDumplings = meatDumplings - 2;
+            veggieDumplings = veggieDumplings - 1;
          } else {
-            totalCosto = totalCosto + precioVerdura + precioTernera;
-            empanadasVerdura = empanadasVerdura - 3;
-            empanadasTernera = empanadasTernera - 3;
+            totalCost = totalCost + veggiePrice + meatPrice;
+            veggieDumplings = veggieDumplings - 3;
+            meatDumplings = meatDumplings - 3;
          }
       }
    }
@@ -165,7 +171,7 @@ The best solution taking account the code implementation, is to notice one thing
 
 ```javascript
 
-let totalCosto = Math.ceil((empanadasPollo * precioPollo + empanadasTernera * precioTernera + empanadasVerdura * precioVerdura) / 3);
+let totalCost = Math.ceil((chickenDumplings * chickenPrice + meatDumplings * meatPrice + veggieDumplings * veggiePrice) / 3);
 
 ```
 
@@ -179,27 +185,28 @@ As you can see, the example consists on 3 veggies, 2 meat and 1 chicken dumpling
 
 ```javascript
 
-const precioPollo = 12;
-const precioTernera = 14;
-const precioVerdura = 16;
-let totalCosto = 0;
+let totalCost = 0;
+const chickenPrice = 12;
+const meatPrice = 14;
+const veggiePrice = 16;
 
-let arrayEmpanadasPollo = new Array(empanadasPollo*2).fill(precioPollo/2);
-let arrayEmpanadasTernera = new Array(empanadasTernera*2).fill(precioTernera/2);
-let arrayEmpanadasVerduras = new Array(empanadasVerdura*2).fill(precioVerdura/2);
+let arrayChickenDumplings = new Array(chickenDumplings*2).fill(chickenPrice/2);
+let arrayMeatDumplings = new Array(meatDumplings*2).fill(meatPrice/2);
+let arrayVeggieDumplings = new Array(veggieDumplings*2).fill(veggiePrice/2);
 
-let arrayVerduraTernera = arrayEmpanadasVerduras.concat(arrayEmpanadasTernera);
-let arrayEmpanadasPedidas = arrayVerduraTernera.concat(arrayEmpanadasPollo);
+let arrayVeggieMeat = arrayVeggieDumplings.concat(arrayMeatDumplings);
+let arrayOrderedDumplings = arrayVeggieMeat.concat(arrayChickenDumplings);
 
-if(arrayEmpanadasPollo.length == arrayEmpanadasTernera.length && arrayEmpanadasPollo.length == arrayEmpanadasVerduras.length){
-    totalCosto = precioTernera * empanadasTernera;
+
+if(arrayChickenDumplings.length == arrayMeatDumplings.length && arrayChickenDumplings.length == arrayVeggieDumplings.length){
+   totalCost = meatPrice * meatDumplings;
 } else {
-    for(let i = 0; i < arrayEmpanadasPedidas.length; i += 3){
-        totalCosto += arrayEmpanadasPedidas[i];
-    }
+   for(let i = 0; i < arrayOrderedDumplings.length; i += 3){
+      totalCost += arrayOrderedDumplings[i];
+   }
 }
-   
-return totalCosto;
+
+return totalCost;
 
 ```
 
@@ -232,7 +239,7 @@ After comparing all the three ways to solve the problem, I decided to stay with 
 
 ```javascript
     // originalAlgorithm.js : Remove export from this line:
-    export const fn = (empanadasPollo, empanadasTernera, empanadasVerdura) => {
+    export const fn = (chickenDumplings, meatDumplings, veggieDumplings) => {
     // ...
     };
 ```
