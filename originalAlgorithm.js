@@ -94,14 +94,20 @@ export const fn = (chickenDumplings, meatDumplings, veggieDumplings) => {
    */
    if(!isChicken){
       while(meatDumplings > 0 && veggieDumplings > 0){
-         if(meatDumplings < veggieDumplings){
+         if(meatDumplings < veggieDumplings && meatDumplings % 3 != 0 && veggieDumplings % 3){
             totalCost = totalCost + veggiePrice;
             meatDumplings = meatDumplings - 1;
             veggieDumplings = veggieDumplings - 2;
-         } else if (meatDumplings > veggieDumplings){
+         } else if (meatDumplings > veggieDumplings && meatDumplings % 3 != 0 && veggieDumplings % 3){
             totalCost = totalCost + (veggiePrice + meatPrice)/2;
             meatDumplings = meatDumplings - 2;
             veggieDumplings = veggieDumplings - 1;
+         } else if(meatDumplings == 0){
+            totalCost = totalCost + veggiePrice;
+            veggieDumplings = veggieDumplings - 3;
+         } else if(veggieDumplings == 0){
+            totalCost = totalCost + meatPrice;
+            meatDumplings = meatDumplings - 3;
          } else {
             totalCost = totalCost + veggiePrice + meatPrice;
             veggieDumplings = veggieDumplings - 3;
@@ -122,14 +128,20 @@ export const fn = (chickenDumplings, meatDumplings, veggieDumplings) => {
    */
    if(!isMeat){
       while(chickenDumplings > 0 && veggieDumplings > 0){
-         if(chickenDumplings < veggieDumplings){
+         if(chickenDumplings < veggieDumplings && chickenDumplings % 3 != 0 && veggieDumplings % 3){
             totalCost = totalCost + veggiePrice;
             chickenDumplings = chickenDumplings - 1;
             veggieDumplings = veggieDumplings - 2;
-         } else if (chickenDumplings > veggieDumplings){
+         } else if (chickenDumplings > veggieDumplings && chickenDumplings % 3 != 0 && veggieDumplings % 3){
             totalCost = totalCost + (chickenPrice + veggiePrice)/2;
             chickenDumplings = chickenDumplings - 2;
             veggieDumplings = veggieDumplings - 1;
+         } else if(chickenDumplings == 0){
+            totalCost = totalCost + veggiePrice;
+            veggieDumplings = veggieDumplings - 3;
+         } else if(veggieDumplings == 0){
+            totalCost = totalCost + chickenPrice;
+            chickenDumplings = chickenDumplings - 3;
          } else {
             totalCost = totalCost + veggiePrice + chickenPrice;
             veggieDumplings = veggieDumplings - 3;
@@ -150,16 +162,22 @@ export const fn = (chickenDumplings, meatDumplings, veggieDumplings) => {
    */
    if(!isVeggie){
       while(chickenDumplings > 0 && meatDumplings > 0){
-         if(chickenDumplings < meatDumplings){
+         if(chickenDumplings < meatDumplings && meatDumplings % 3 != 0 && chickenDumplings % 3){
             totalCost = totalCost + meatPrice;
             chickenDumplings = chickenDumplings - 1;
             meatDumplings = meatDumplings - 2;
-         } else if (chickenDumplings > meatDumplings){
+         } else if (chickenDumplings > meatDumplings && meatDumplings % 3 != 0 && chickenDumplings % 3){
             totalCost = totalCost + (chickenPrice + meatPrice)/2;
             chickenDumplings = chickenDumplings - 2;
             meatDumplings = meatDumplings - 1;
+         } else if(meatDumplings == 0){
+            totalCost = totalCost + chickenPrice;
+            chickenDumplings = chickenDumplings - 3;
+         } else if(chickenDumplings == 0){
+            totalCost = totalCost + meatPrice;
+            meatDumplings = meatDumplings - 3;
          } else {
-            totalCost = totalCost + chickenPrice + meatPrice;
+            totalCost = totalCost + meatPrice + chickenPrice;
             meatDumplings = meatDumplings - 3;
             chickenDumplings = chickenDumplings - 3;
          }
