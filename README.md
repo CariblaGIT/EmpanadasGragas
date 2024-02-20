@@ -142,7 +142,7 @@ On this scenario, the unique approach is to set groups of 3 of the chicken dumpl
 ```javascript
 
 if(!isChicken){
-      while(meatDumplings > 0 && veggieDumplings > 0){
+      while(meatDumplings > 0 || veggieDumplings > 0){
          if(meatDumplings < veggieDumplings){
             totalCost = totalCost + veggiePrice;
             meatDumplings = meatDumplings - 1;
@@ -175,7 +175,7 @@ let totalCost = Math.ceil((chickenDumplings * chickenPrice + meatDumplings * mea
 
 ```
 
-## Explanation interesting algorithm
+## Explanation interesting algorithm 🚀
 
 Trying to approach a better solution that the first one that I have implemented, I noticed an interesting property of the problem. If you try to think a way to demostrate, using the half parts costs of the dumplings, the best combination possible of that halfs will be determined by arranging them in order in an array and making groups of three applicating that order. There is only ONE exception to that rule, and is when there are the same amount of all the types of dumplings, in that cases the best solution is to do the sum of costs explained on the previous section. Here is an example:
 
@@ -217,6 +217,41 @@ After some testing with large numbers inputs, I detected some cases in which thi
 ## Final decision and conclusion 🎯
 
 After comparing all the three ways to solve the problem, I decided to stay with the original approach, because the Math.Ceil() function has some resolution problems in different cases (not the ones that appears on the main.test.js); and the halfs approach with larger amounts of dumplings (like 13,10,13) cannot reach the exact amount expected. By that reasons, I stay with the original approach, with the only problem that is a lot of code in front of the other options.
+
+## Additions implemented from base algorithm 💎
+
+After implementing the original algorithm, I have made some changes to the code to know which offer is selected at the time are done the groups of 3 dumplings. To achieve that, I have created a object defined at the beggining of the function as follows:
+
+```javascript
+
+let offersTaken = {
+      "offer3x1 - 1 of each type" : 0,
+      "offer3x1 - 3 chicken dumplings" : 0,
+      "offer3x1 - 3 meat dumplings" : 0,
+      "offer3x1 - 3 veggie dumplings" : 0,
+      "offer3x1 - 2 veggies 1 meat dumplings" : 0,
+      "offer3x1 - 2 veggies 1 chicken dumplings" : 0,
+      "offer3x1 - 2 meat 1 veggie dumplings" : 0,
+      "offer3x1 - 2 meat 1 chicken dumplings" : 0,
+      "offer3x1 - 2 chicken 1 veggie dumplings" : 0,
+      "offer3x1 - 2 chicken 1 meat dumplings" : 0
+   }
+
+```
+
+As you can see, is an object with the name of each possible combination of 3 dumplings and, on the cases explained on the section of the original algorithm implementation, on each case I added 1 to the value of the offer that is selected. After that, at the end of the code, is done a loop to clean the object with the offers that have not been selected as follows:
+
+```javascript
+
+for (const [key, value] of Object.entries(offersTaken)) {
+      if(value == 0){
+         delete offersTaken[key]
+      }
+   }
+
+```
+
+With that implementation, some fixes done to the cases when there were 2 types of dumpling after the suitable case scenario, a BIG fix to the while loops in that cases and also adding some prints, on console you could know for that scenario the following information: how much dumplings of each type has been selected, the minimum cost of the buy and how you can achieve that cost using the 3x1 offers
 
 ## Use instructions - Tests :computer:
 
