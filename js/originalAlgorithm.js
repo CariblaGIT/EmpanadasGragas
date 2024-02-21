@@ -250,5 +250,3 @@ export const fn = (chickenDumplings, meatDumplings, veggieDumplings) => {
    // After checking all scenarios, the total cost is given, knowing the minimum price to spend on that buy :D
    return totalCost;
  };
-
- fn(10,1,28)

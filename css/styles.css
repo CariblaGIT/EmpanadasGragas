@@ -99,6 +99,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .arrowLeft:hover, .arrowRight:hover{
@@ -133,4 +134,5 @@ body{
     border: 0.2em solid lightgreen;
     color: lightgreen;
     margin-top: 3em;
+    cursor: pointer;
 }
