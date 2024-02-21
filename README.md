@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="./img/logo.png" alt="Markdownify" width="200" style="background-color: #4F5F74"></a>
+  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="./img/logo.png" alt="Markdownify" width="200"></a>
   <br>
   JS Problem - Dumpling buy
   <br>
@@ -269,16 +269,7 @@ With that implementation, some fixes done to the cases when there were 2 types o
 
 ## Use instructions - Web 🖥️
 
-1. Clone repo
-2. Change function fn to be able to being used in JS as follows:
-
-```javascript
-    // originalAlgorithm.js : Remove export from this line:
-    export const fn = (chickenDumplings, meatDumplings, veggieDumplings) => {
-    // ...
-    };
-```
-3. Launch index.html, the interface will show you a 3 dumpling selector, the result is shown on console :D
+You can access the [demo](https://cariblagit.github.io/EmpanadasGragas/) to test the algorithm implemented on a graphical interface :D
 
 <img src="./img/web.png">
 
